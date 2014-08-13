@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :set_project, only: [:show, :edit]
   def index
     @project = Project.all
   end
@@ -19,12 +20,29 @@ class ProjectsController < ApplicationController
   end
 
   def show
+  end
+
+  def edit
+  end
+
+  def update
     @project = Project.find(params[:id])
+    if @project.update(project_params)
+    flash[:notice] = "Project has been updated."
+    redirect_to @project
+    else
+      flash[:alert] = "Project has not been updated"
+      render "edit"
+    end
   end
 
   private
   def project_params
     params.require(:project).permit(:name, :description)
+  end
+
+  def set_project
+    @project = Project.find(params[:id])
   end
 
 end
