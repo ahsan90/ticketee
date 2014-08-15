@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   root 'projects#index'
 
-  resources :projects
+  resources :projects do
+    resources :tickets
+  end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

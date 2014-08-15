@@ -13,6 +13,12 @@
       <jdbc-url>jdbc:sqlite:C:\Sites\ticketee\db\test.sqlite3</jdbc-url>
       <libraries />
     </data-source>
+    <data-source source="LOCAL" name="Rails ticketee: production" uuid="bf7f57c2-b3e7-43e9-b6d0-87422124ee39">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Sites\ticketee\db\production.sqlite3</jdbc-url>
+      <libraries />
+    </data-source>
   </component>
 </project>
 
