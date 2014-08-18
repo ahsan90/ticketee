@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show,
+                                     :edit,
+                                     :update,
+                                     :destroy]
+  def index
+    @users = User.all
+  end
   def new
     @user = User.new
   end
@@ -16,9 +23,30 @@ class UsersController < ApplicationController
   def show
   end
 
+  def edit
+  end
+
+  def update
+    if @user.update(user_params)
+      flash[:notice] = "Profile has been updated."
+      redirect_to @user
+    else
+      flash[:alert] = "User has not been updated"
+      render "edit"
+    end
+  end
+
+  def destroy
+    @user.destroy
+    flash[:notice] = "User has been destroyed."
+    redirect_to users_path
+  end
   private
   def user_params
-    params.require(:user).permit(:name,:password,
+    params.require(:user).permit(:name, :email,:password,
                                  :password_confirmation)
+  end
+  def set_user
+    @user = User.find(params[:id])
   end
 end
